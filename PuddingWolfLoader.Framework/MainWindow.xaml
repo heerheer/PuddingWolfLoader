@@ -1,0 +1,41 @@
+﻿<Window x:Class="PuddingWolfLoader.Framework.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PuddingWolfLoader.Framework"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        Title="PuddingWolfLoader.Framework" Height="640" Width="1000"
+        FontFamily="{StaticResource CommonFont}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resource/Converter.xaml"/>
+                <ResourceDictionary Source="/Resource/Styles/MainWindow/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.DataContext>
+        <vm:MainWindowViewModel x:Name="ViewModel" 
+                                xmlns:vm="clr-namespace:PuddingWolfLoader.Framework.ViewModel"/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="800"/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="Gray">
+            <ListBox x:Name="SelectList" 
+                     SelectedIndex="0"
+                     ItemsSource="{Binding ViewTabs}">
+
+            </ListBox>
+        </Grid>
+        <Grid Grid.Column="1">
+            <ContentControl 
+                Content="{Binding ElementName=SelectList,Path=SelectedIndex,Converter={StaticResource ContentViewConverter}}"/>
+            
+        </Grid>
+    </Grid>
+</Window>

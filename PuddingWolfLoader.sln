@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31521.260
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuddingWolfLoader.Framework", "PuddingWolfLoader.Framework\PuddingWolfLoader.Framework.csproj", "{F742EB70-B08A-4A64-8A13-7A1C9EBC8A1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuddingWolfLoader.SDK", "PuddingWolfLoader.SDK\PuddingWolfLoader.SDK.csproj", "{23EC6611-F86B-41E5-8326-87E2B6E6F7E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F742EB70-B08A-4A64-8A13-7A1C9EBC8A1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F742EB70-B08A-4A64-8A13-7A1C9EBC8A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F742EB70-B08A-4A64-8A13-7A1C9EBC8A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F742EB70-B08A-4A64-8A13-7A1C9EBC8A1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23EC6611-F86B-41E5-8326-87E2B6E6F7E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23EC6611-F86B-41E5-8326-87E2B6E6F7E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23EC6611-F86B-41E5-8326-87E2B6E6F7E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23EC6611-F86B-41E5-8326-87E2B6E6F7E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F792C26-FE43-4D69-AEC1-47197B06DD70}
+	EndGlobalSection
+EndGlobal
