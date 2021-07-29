@@ -29,13 +29,15 @@ namespace PuddingWolfLoader.Framework.ViewModel
         void Init()
         {
             //载入模块
+            //TODO Load Modules
 
             //载入视图
+            //Find ModuleViews And Add to Tabs
             RegViewAndAddToTav<DashboardView>("Dashboard", "\xe8cd");
             RegViewAndAddToTav<LogsView>("Logs", "\xe8c5");
 
 
-            //载入插件
+            
         }
 
 
