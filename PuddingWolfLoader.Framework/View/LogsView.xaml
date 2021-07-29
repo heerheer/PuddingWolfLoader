@@ -4,12 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PuddingWolfLoader.Framework.View"
+             xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <UserControl.DataContext>
         <vm:LogsViewModel x:Name="ViewModel" xmlns:vm="clr-namespace:PuddingWolfLoader.Framework.ViewModel"/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Resource/Styles/LogsView/LogsView_Styles.xaml"/>
+    </UserControl.Resources>
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="500"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <TextBox Margin="10"
+                 pu:TextBoxHelper.CornerRadius="10"
+                 Padding="10"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap"
+                 Text="{Binding LogsText,Mode=OneWay}"/>
+        <Border Grid.Row="1"
+                Margin="10"
+                CornerRadius="10"
+                Background="{StaticResource LightColor}">
+            <TextBlock Text="你知道吗:这边可以放一些按钮" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
     </Grid>
 </UserControl>

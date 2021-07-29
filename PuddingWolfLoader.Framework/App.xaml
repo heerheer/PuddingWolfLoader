@@ -7,6 +7,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Control.xaml" />
+                <ResourceDictionary Source="/Resource/Colors.xaml"/>
+
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="CommonFont">Microsoft YaHei UI,/Resource/#iconfont</FontFamily>
         </ResourceDictionary>

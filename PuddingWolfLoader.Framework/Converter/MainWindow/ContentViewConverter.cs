@@ -14,7 +14,7 @@ namespace PuddingWolfLoader.Framework.Converter.MainWindow
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ViewContainer.GetViewInstance((int)value);
+            return ViewContainer.GetViewInstance();
 
             
         }

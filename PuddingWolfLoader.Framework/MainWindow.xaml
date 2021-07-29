@@ -12,7 +12,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resource/Converter.xaml"/>
-                <ResourceDictionary Source="/Resource/Styles/MainWindow/Styles.xaml"/>
+                <ResourceDictionary Source="/Resource/Styles/MainWindow/MainWindow_Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -25,13 +25,16 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="800"/>
         </Grid.ColumnDefinitions>
-        <Grid Background="Gray">
+        <StackPanel>
+            <StackPanel Height="100">
+                <Label Height="100" Content="你知道吗：这里是留着放Logo的" VerticalContentAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
             <ListBox x:Name="SelectList" 
                      SelectedIndex="0"
                      ItemsSource="{Binding ViewTabs}">
 
             </ListBox>
-        </Grid>
+        </StackPanel>
         <Grid Grid.Column="1">
             <ContentControl 
                 Content="{Binding ElementName=SelectList,Path=SelectedIndex,Converter={StaticResource ContentViewConverter}}"/>

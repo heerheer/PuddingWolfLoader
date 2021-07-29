@@ -5,12 +5,96 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PuddingWolfLoader.Framework.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <UserControl.DataContext >
         <vm:DashboardViewModel x:Name="ViewModel" 
                                xmlns:vm="clr-namespace:PuddingWolfLoader.Framework.ViewModel"/>
     </UserControl.DataContext>
-    <Grid>
-        <TextBlock Text="Dashboard" FontSize="40"/>
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Resource/Styles/DashboardView/DashboardView_Styles.xaml"/>
+    </UserControl.Resources>
+    <Grid Height="600" Width="800" >
+        <Canvas>
+            <StackPanel Orientation="Horizontal"
+                        Margin="5,0,0,0">
+                <StackPanel.Resources>
+                    <Style TargetType="Border" BasedOn="{StaticResource LittlePanel}"/>
+                </StackPanel.Resources>
+                <Border
+                    >
+                    <StackPanel Style="{StaticResource LittlePanel_Stack}">
+                        <Viewbox VerticalAlignment="Center">
+                            <TextBlock 
+                                Style="{StaticResource LittlePanel_IconTextblock}"
+                                Text="&#xe745;"/>
+                        </Viewbox>
+                        <Viewbox VerticalAlignment="Center"
+                                  Margin="10,20"
+                                 Width="70">
+                            <TextBlock Text="{Binding SystemStatus}"/>
+                        </Viewbox>
+
+                    </StackPanel>
+                    <!-- 运行状态 -->
+                </Border>
+                <Border
+                >
+                    <!-- 加载模块数 -->
+                    <StackPanel Style="{StaticResource LittlePanel_Stack}">
+                        <Viewbox VerticalAlignment="Center">
+                            <TextBlock 
+                                Style="{StaticResource LittlePanel_IconTextblock}"
+                                Text="&#xe744;"/>
+                        </Viewbox>
+                        <Viewbox VerticalAlignment="Center"
+                                  Margin="10,20"
+                                 Width="70">
+                            <TextBlock Text="{Binding ModuleCount}"/>
+                        </Viewbox>
+
+                    </StackPanel>
+                </Border>
+                <Border>
+                    <!-- iM状态 -->
+                    <StackPanel Style="{StaticResource LittlePanel_Stack}">
+                        <Viewbox VerticalAlignment="Center">
+                            <TextBlock
+                                Style="{StaticResource LittlePanel_IconTextblock}"
+                                Text="&#xe8b8;"/>
+                        </Viewbox>
+                        <Viewbox VerticalAlignment="Center"
+                                  Margin="10,20"
+                                 Width="70">
+                            <TextBlock Text="{Binding IMStatus}"/>
+                        </Viewbox>
+
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+            <Border
+                Style="{StaticResource NoticePanel}"
+                Canvas.Top="120"
+                Canvas.Left="10">
+                <TextBlock Text="公告，晚点写"/>
+            </Border>
+            <Border
+                CornerRadius="10"
+                Background="{StaticResource MainColor}"
+                Canvas.Top="120"
+                Canvas.Left="320"
+                Height="180"
+                Width="180">
+                <TextBlock Text="公告，晚点写"/>
+
+            </Border>
+            <Border
+                Style="{StaticResource SytemInfoPanel}"
+                Canvas.Top="120"
+                Canvas.Left="320">
+
+            </Border>
+        </Canvas>
+
     </Grid>
 </UserControl>

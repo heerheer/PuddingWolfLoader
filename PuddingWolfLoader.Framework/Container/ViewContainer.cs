@@ -33,6 +33,8 @@ namespace PuddingWolfLoader.Framework.Container
 
         public static void RegisterViewInstance(Type type)
         {
+            if (_views.ContainsKey(type))
+                return;
             _views.Add(type, Activator.CreateInstance(type) ?? new object());
         }
 
