@@ -115,5 +115,11 @@
             </Border>
         </Grid>
     </DataTemplate>
-    
+    <DataTemplate DataType="{x:Type mo:IMMsg}" x:Key="EventBubble">
+        <Grid Margin="0,5,0,5">
+            <Border HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Padding="2">
+                <ContentPresenter Content="{Binding Content}"/>
+            </Border>
+        </Grid>
+    </DataTemplate>
 </ResourceDictionary>

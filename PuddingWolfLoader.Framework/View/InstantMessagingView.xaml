@@ -14,9 +14,14 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Resource/Styles/IMView/iM_Main_Styles.xaml"/>
-                
+                <ResourceDictionary Source="/Resource/Styles/IMView/iM_Main_Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <ContextMenu x:Key="GroupOperateMenu">
+                <MenuItem Header="群员操作"/>
+                <MenuItem Header="邀请进群(随机ID)"
+                          Command="{Binding GroupAddRandomMemberCommand}"/>
+                <MenuItem Header="解散该群"/>
+            </ContextMenu>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -26,10 +31,17 @@
         </Grid.RowDefinitions>
         <Grid Background="{StaticResource ThirdColor}">
             <StackPanel Orientation="Horizontal">
+                <!--操作用面板-->
                 <Button Content="添加群组" Margin="5,10"
                        Command="{Binding AddGroupCommand}"/>
                 <Button Content="添加好友" Margin="5,10"
                         Command="{Binding AddFriendCommand}"/>
+                <Label Content="群组操作(右键)" Margin="5,10" VerticalContentAlignment="Center"
+                           Background="{StaticResource MainColor}"
+                        ContextMenu="{StaticResource GroupOperateMenu}"
+                        />
+                <Button Content="好友操作" Margin="5,10"
+                        />
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
@@ -102,11 +114,11 @@
                                         </Setter.Value>
                                     </Setter>
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                                 </Style.Setters>
                             </Style>
                         </ListBox.ItemContainerStyle>
-                        
+
                     </ListBox>
                 </DockPanel>
             </Grid>

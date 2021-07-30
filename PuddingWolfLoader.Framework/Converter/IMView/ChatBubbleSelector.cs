@@ -18,15 +18,29 @@ namespace PuddingWolfLoader.Framework.Converter
 
             IMMsg message = item as IMMsg;
 
-            if (message.Sender == "10000")
+            if (message.Type is MsgType.TextMessage)
             {
-                return u.FindResource("SendBubble") as DataTemplate;
+                if (message.Sender == "10000")
+                {
+                    //Self
+                    return u.FindResource("SendBubble") as DataTemplate;
+                }
+                else
+                {
+                    //Others
+                    return u.FindResource("RecvBubble") as DataTemplate;
+                }
+
+            }else if(message.Type is MsgType.Event)
+            {
+                return u.FindResource("EventBubble") as DataTemplate;
+
             }
             else
             {
-
-                return u.FindResource("RecvBubble") as DataTemplate;
+                return null;
             }
+
         }
     }
     class GroupFriendSelector : DataTemplateSelector

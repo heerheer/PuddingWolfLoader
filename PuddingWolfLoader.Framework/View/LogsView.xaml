@@ -41,7 +41,7 @@
                           x:Name="LogTypeComboBox" 
                           Text="{Binding SelectedType}"
                           SelectedValuePath="Content"
-                          SelectedIndex="0"
+                          SelectedIndex="1"
                           pu:ComboBoxHelper.CornerRadius="5">
                     <ComboBoxItem Content="Debug"/>
                     <ComboBoxItem Content="Info"/>

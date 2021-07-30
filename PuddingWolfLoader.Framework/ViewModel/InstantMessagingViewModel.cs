@@ -6,10 +6,21 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Windows.Input;
+using System.Windows.Interop;
 
 namespace PuddingWolfLoader.Framework.ViewModel
 {
+    /*
+     约定
+
+    群号 7位数
+    用户 5位数
+    自己 10000
+        
+     */
+
     [PropertyChanged.AddINotifyPropertyChangedInterface]
     public class InstantMessagingViewModel
     {
@@ -33,12 +44,16 @@ namespace PuddingWolfLoader.Framework.ViewModel
 
         public delegate void MsgReceivedEventHandler(IMMsg msg);
         public static event MsgReceivedEventHandler OnMsgReceived;
+
+        public delegate void GroupJoinedMemberEventHandler(string group,string member);
+        public static event GroupJoinedMemberEventHandler OnGroupJoinedMemberEvent;
         #endregion
 
 
         public ICommand AddGroupCommand { get; set; }
         public ICommand AddFriendCommand { get; set; }
         public ICommand SendMsgCommand { get; set; }
+        public ICommand GroupAddRandomMemberCommand { get; set; }
 
         public InstantMessagingViewModel()
         {
@@ -53,6 +68,7 @@ namespace PuddingWolfLoader.Framework.ViewModel
             AddGroupCommand = new RelayCommand(AddGroup);
             AddFriendCommand = new RelayCommand(AddFriend);
             SendMsgCommand = new RelayCommand(SendMsg);
+            GroupAddRandomMemberCommand = new RelayCommand(Group_AddRandomMemeber);
 
             //初始化Event
             OnAddedGroupEvent += delegate (Group group)
@@ -66,7 +82,11 @@ namespace PuddingWolfLoader.Framework.ViewModel
              };
             OnMsgReceived += delegate (IMMsg msg)
             {
-                logContainer.Info($"IM收到消息来自{msg.From}发送者{msg.Sender}");
+                logContainer.Info($"IM收到消息来自{msg.From}发送者{msg.Sender},消息内容{msg.Content}");
+            };
+            OnGroupJoinedMemberEvent += delegate (string group,string id)
+            {
+                logContainer.Info($"IM 成员{id}加入了群{group}");
             };
         }
 
@@ -75,7 +95,7 @@ namespace PuddingWolfLoader.Framework.ViewModel
             var randomName = new[] { "XXX测试群", "XXX交流群", "XXX讨论群", "XXX真爱粉", "XXX萌新群", "XXX的小窝" };
             AddGroup(new Group
             {
-                Id = new Random().Next(10000000, 999999999).ToString(),
+                Id = new Random().Next(10000000, 99999999).ToString(),
                 Name = randomName[new Random().Next(randomName.Length)] + new Random().Next(0, 999).ToString()
             });
         }
@@ -84,13 +104,17 @@ namespace PuddingWolfLoader.Framework.ViewModel
             var randomName = new[] { "一个好友", "XXX老师", "鱼", "呜呜呜", "好哥哥好姐姐", "欧洲狗" };
             AddFriend(new Friend
             {
-                Id = new Random().Next(10000000, 999999999).ToString(),
+                Id = new Random().Next(10001, 99999).ToString(),
                 Name = randomName[new Random().Next(randomName.Length)] + new Random().Next(0, 999).ToString()
             });
         }
         void SendMsg(object sender)
         {
             CreatedMsg(SelectedSource.Id, "10000", EditingMessage);
+        }
+        void Group_AddRandomMemeber(object sender)
+        {
+            AddGroupMember(SelectedSource.Id,new Random().Next(10001,99999).ToString());
         }
 
 
@@ -112,9 +136,17 @@ namespace PuddingWolfLoader.Framework.ViewModel
         /// </summary>
         public void CreatedMsg(string from, string sender, string msg)
         {
-            var _msg = new IMMsg() { From = from, Sender = sender, Content = msg };
+            var _msg = new IMMsg(MsgType.TextMessage) { From = from, Sender = sender, Content = System.Text.RegularExpressions.Regex.Escape(msg) };
             MessageDic[from].Add(_msg);
             OnMsgReceived.Invoke(_msg);
+        }
+
+        public void AddGroupMember(string group,string id)
+{
+            var _msg = new IMMsg(MsgType.Event) { From = group, Sender = id, Content = $"{id}加入了群聊" };
+            MessageDic[group].Add(_msg);
+            (iMObjects.First(x => x.Id == group) as Group).Members.Add(id);
+            OnGroupJoinedMemberEvent.Invoke(group, id);
         }
     }
 }
