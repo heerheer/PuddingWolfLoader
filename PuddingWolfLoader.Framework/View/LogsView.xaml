@@ -1,53 +1,47 @@
 ﻿<UserControl x:Class="PuddingWolfLoader.Framework.View.LogsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:PuddingWolfLoader.Framework.View"
              xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
              xmlns:conv="clr-namespace:PuddingWolfLoader.Framework.Converter"
-             mc:Ignorable="d" 
-             Width="800" Height="600"
-             >
+             mc:Ignorable="d"
+             Width="800" Height="600">
     <UserControl.DataContext>
-        <vm:LogsViewModel x:Name="ViewModel" xmlns:vm="clr-namespace:PuddingWolfLoader.Framework.ViewModel"/>
+        <vm:LogsViewModel x:Name="ViewModel" xmlns:vm="clr-namespace:PuddingWolfLoader.Framework.ViewModel" />
     </UserControl.DataContext>
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resource/Styles/LogsView/LogsView_Styles.xaml"/>
+                <ResourceDictionary Source="/Resource/Styles/LogsView/LogsView_Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <conv:ListWhereConverter x:Key="ListWhereConverter"/>
+            <conv:ListWhereConverter x:Key="ListWhereConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="500"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="500" />
+            <RowDefinition Height="100" />
         </Grid.RowDefinitions>
         <DataGrid ItemsSource="{Binding SelectedLogs}"
                   Margin="10"
-                  IsReadOnly="True"
-                  >
-
-            
-        </DataGrid>
+                  IsReadOnly="True" />
         <Border Grid.Row="1"
                 Margin="10"
-                CornerRadius="10"
-               >
+                CornerRadius="10">
             <StackPanel Orientation="Horizontal">
                 <ComboBox Height="40" Width="100"
-                          x:Name="LogTypeComboBox" 
+                          x:Name="LogTypeComboBox"
                           Text="{Binding SelectedType}"
                           SelectedValuePath="Content"
                           SelectedIndex="1"
                           pu:ComboBoxHelper.CornerRadius="5">
-                    <ComboBoxItem Content="Debug"/>
-                    <ComboBoxItem Content="Info"/>
-                    <ComboBoxItem Content="Warning"/>
-                    <ComboBoxItem Content="Error"/>
-                    <ComboBoxItem Content="Fatal"/>
+                    <ComboBoxItem Content="Debug" />
+                    <ComboBoxItem Content="Info" />
+                    <ComboBoxItem Content="Warning" />
+                    <ComboBoxItem Content="Error" />
+                    <ComboBoxItem Content="Fatal" />
                 </ComboBox>
             </StackPanel>
         </Border>

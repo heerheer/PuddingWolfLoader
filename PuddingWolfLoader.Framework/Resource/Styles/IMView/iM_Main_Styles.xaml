@@ -5,50 +5,45 @@
     <ResourceDictionary.MergedDictionaries>
 
     </ResourceDictionary.MergedDictionaries>
-    <conv:ChatBubbleSelector x:Key="chatBubbleSelector"/>
-    <conv:GroupFriendSelector x:Key="GroupFriendSelector"/>
-    <conv:EqualToVisibilityConverter x:Key="EqualToVisibilityConverter"/>
+    <conv:ChatBubbleSelector x:Key="chatBubbleSelector" />
+    <conv:GroupFriendSelector x:Key="GroupFriendSelector" />
+    <conv:EqualToVisibilityConverter x:Key="EqualToVisibilityConverter" />
     <Color x:Key="background">#F5F5F5</Color>
 
-    <SolidColorBrush x:Key="background_brush" 
-                 Color="{StaticResource background}" 
-                />
+    <SolidColorBrush x:Key="background_brush"
+                     Color="{StaticResource background}" />
 
     <Color x:Key="icon_btn_normal">#F7F7F7</Color>
 
-    <SolidColorBrush x:Key="icon_btn_normal_brush" 
-                 Color="{StaticResource icon_btn_normal}" 
-                  />
+    <SolidColorBrush x:Key="icon_btn_normal_brush"
+                     Color="{StaticResource icon_btn_normal}" />
 
     <Color x:Key="message_send_bg">#98E165</Color>
 
-    <SolidColorBrush x:Key="message_send_bg_brush" 
-                 Color="{StaticResource message_send_bg}" 
-                  />
+    <SolidColorBrush x:Key="message_send_bg_brush"
+                     Color="{StaticResource message_send_bg}" />
 
     <Color x:Key="message_recv_bg">#F6F6F6</Color>
 
-    <SolidColorBrush x:Key="message_recv_bg_brush" 
-                 Color="{StaticResource message_recv_bg}" 
-                  />
+    <SolidColorBrush x:Key="message_recv_bg_brush"
+                     Color="{StaticResource message_recv_bg}" />
 
     <Color x:Key="green_normal">#07C160</Color>
 
-    <SolidColorBrush x:Key="green_normal_brush" 
-                 Color="{StaticResource green_normal}" 
-                  />
+    <SolidColorBrush x:Key="green_normal_brush"
+                     Color="{StaticResource green_normal}" />
 
     <DataTemplate x:Key="iMObjectsListDataTemplate_Group" DataType="{x:Type mo:Group}">
         <StackPanel
             Height="40" Orientation="Horizontal">
             <StackPanel Margin="5,0,5,0" Width="40">
                 <Viewbox Height="40">
-                    <TextBlock Text="&#xe8e5;"/>
+                    <TextBlock Text="&#xe8e5;" />
                 </Viewbox>
             </StackPanel>
             <StackPanel>
-                <TextBlock Height="20" Text="{Binding Name}"/>
-                <TextBlock Height="20" Foreground="LightGray" Text="{Binding Id}"/>
+                <TextBlock Height="20" Text="{Binding Name}" />
+                <TextBlock Height="20" Foreground="LightGray" Text="{Binding Id}" />
             </StackPanel>
         </StackPanel>
     </DataTemplate>
@@ -57,12 +52,12 @@
             Height="40" Orientation="Horizontal">
             <StackPanel Margin="5,0,5,0" Width="40">
                 <Viewbox Height="40">
-                    <TextBlock Text="&#xe8e1;"/>
+                    <TextBlock Text="&#xe8e1;" />
                 </Viewbox>
             </StackPanel>
             <StackPanel>
-                <TextBlock Height="20" Text="{Binding Name}"/>
-                <TextBlock Height="20" Foreground="LightGray" Text="{Binding Id}"/>
+                <TextBlock Height="20" Text="{Binding Name}" />
+                <TextBlock Height="20" Foreground="LightGray" Text="{Binding Id}" />
             </StackPanel>
         </StackPanel>
     </DataTemplate>
@@ -73,20 +68,20 @@
                 <ColumnDefinition Width="40" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Border Height="35" Width="35" Background="Gray" CornerRadius="15"/>
-            <Border x:Name="border1" 
+            <Border Height="35" Width="35" Background="Gray" CornerRadius="15" />
+            <Border x:Name="border1"
                     HorizontalAlignment="Left"
-                            VerticalAlignment="Top" 
-                            Grid.Column="1" 
-                            CornerRadius="5" 
-                            BorderBrush="#EDEDED" 
-                            BorderThickness="1" 
-                            Margin="10,2,0,2" 
-                            Background="#FFFFFF" 
-                            Padding="5" 
-                            MinHeight="35"
-                            MinWidth="50">
-                <ContentPresenter HorizontalAlignment="Left" Content="{Binding Content}"/>
+                    VerticalAlignment="Top"
+                    Grid.Column="1"
+                    CornerRadius="5"
+                    BorderBrush="#EDEDED"
+                    BorderThickness="1"
+                    Margin="10,2,0,2"
+                    Background="#FFFFFF"
+                    Padding="5"
+                    MinHeight="35"
+                    MinWidth="50">
+                <ContentPresenter HorizontalAlignment="Left" Content="{Binding Content}" />
                 <!--Content-->
             </Border>
         </Grid>
@@ -97,20 +92,20 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="40" />
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="1" Height="35" Width="35" Background="Gray" CornerRadius="15"/>
-            <Border         x:Name="border1" 
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Top" 
-                            Grid.Column="0" 
-                            CornerRadius="5" 
-                            BorderBrush="#EDEDED" 
-                            BorderThickness="1" 
-                            Margin="10,2,0,2" 
-                            Background="#FFFFFF" 
-                            Padding="5" 
-                            MinHeight="35"
-                            MinWidth="50">
-                <ContentPresenter HorizontalAlignment="Left" Content="{Binding Content}"/>
+            <Border Grid.Column="1" Height="35" Width="35" Background="Gray" CornerRadius="15" />
+            <Border x:Name="border1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Grid.Column="0"
+                    CornerRadius="5"
+                    BorderBrush="#EDEDED"
+                    BorderThickness="1"
+                    Margin="10,2,0,2"
+                    Background="#FFFFFF"
+                    Padding="5"
+                    MinHeight="35"
+                    MinWidth="50">
+                <ContentPresenter HorizontalAlignment="Left" Content="{Binding Content}" />
                 <!--Content-->
             </Border>
         </Grid>
@@ -118,7 +113,7 @@
     <DataTemplate DataType="{x:Type mo:IMMsg}" x:Key="EventBubble">
         <Grid Margin="0,5,0,5">
             <Border HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Padding="2">
-                <ContentPresenter Content="{Binding Content}"/>
+                <ContentPresenter Content="{Binding Content}" />
             </Border>
         </Grid>
     </DataTemplate>

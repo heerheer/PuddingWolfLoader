@@ -1,55 +1,53 @@
 ﻿<UserControl x:Class="PuddingWolfLoader.Framework.View.DashboardView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:PuddingWolfLoader.Framework.View"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="800">
-    <UserControl.DataContext >
-        <vm:DashboardViewModel x:Name="ViewModel" 
-                               xmlns:vm="clr-namespace:PuddingWolfLoader.Framework.ViewModel"/>
+    <UserControl.DataContext>
+        <vm:DashboardViewModel x:Name="ViewModel"
+                               xmlns:vm="clr-namespace:PuddingWolfLoader.Framework.ViewModel" />
     </UserControl.DataContext>
     <UserControl.Resources>
-        <ResourceDictionary Source="/Resource/Styles/DashboardView/DashboardView_Styles.xaml"/>
+        <ResourceDictionary Source="/Resource/Styles/DashboardView/DashboardView_Styles.xaml" />
     </UserControl.Resources>
-    <Grid Height="600" Width="800" >
+    <Grid Height="600" Width="800">
         <Canvas>
             <StackPanel Orientation="Horizontal"
                         Margin="5,0,0,0">
                 <StackPanel.Resources>
-                    <Style TargetType="Border" BasedOn="{StaticResource LittlePanel}"/>
+                    <Style TargetType="Border" BasedOn="{StaticResource LittlePanel}" />
                 </StackPanel.Resources>
-                <Border
-                    >
+                <Border>
                     <StackPanel Style="{StaticResource LittlePanel_Stack}">
                         <Viewbox VerticalAlignment="Center">
-                            <TextBlock 
+                            <TextBlock
                                 Style="{StaticResource LittlePanel_IconTextblock}"
-                                Text="&#xe745;"/>
+                                Text="&#xe745;" />
                         </Viewbox>
                         <Viewbox VerticalAlignment="Center"
-                                  Margin="10,20"
+                                 Margin="10,20"
                                  Width="70">
-                            <TextBlock Text="{Binding SystemStatus}"/>
+                            <TextBlock Text="{Binding SystemStatus}" />
                         </Viewbox>
 
                     </StackPanel>
                     <!-- 运行状态 -->
                 </Border>
-                <Border
-                >
+                <Border>
                     <!-- 加载模块数 -->
                     <StackPanel Style="{StaticResource LittlePanel_Stack}">
                         <Viewbox VerticalAlignment="Center">
-                            <TextBlock 
+                            <TextBlock
                                 Style="{StaticResource LittlePanel_IconTextblock}"
-                                Text="&#xe744;"/>
+                                Text="&#xe744;" />
                         </Viewbox>
                         <Viewbox VerticalAlignment="Center"
-                                  Margin="10,20"
+                                 Margin="10,20"
                                  Width="70">
-                            <TextBlock Text="{Binding ModuleCount}"/>
+                            <TextBlock Text="{Binding ModuleCount}" />
                         </Viewbox>
 
                     </StackPanel>
@@ -60,12 +58,12 @@
                         <Viewbox VerticalAlignment="Center">
                             <TextBlock
                                 Style="{StaticResource LittlePanel_IconTextblock}"
-                                Text="&#xe8b8;"/>
+                                Text="&#xe8b8;" />
                         </Viewbox>
                         <Viewbox VerticalAlignment="Center"
-                                  Margin="10,20"
+                                 Margin="10,20"
                                  Width="70">
-                            <TextBlock Text="{Binding IMStatus}"/>
+                            <TextBlock Text="{Binding IMStatus}" />
                         </Viewbox>
 
                     </StackPanel>
@@ -76,7 +74,7 @@
                 Style="{StaticResource NoticePanel}"
                 Canvas.Top="120"
                 Canvas.Left="10">
-                <TextBlock Text="公告，晚点写"/>
+                <TextBlock Text="公告，晚点写" />
             </Border>
             <Border
                 CornerRadius="10"
@@ -85,15 +83,13 @@
                 Canvas.Left="320"
                 Height="180"
                 Width="180">
-                <TextBlock Text="公告，晚点写"/>
+                <TextBlock Text="公告，晚点写" />
 
             </Border>
             <Border
                 Style="{StaticResource SytemInfoPanel}"
                 Canvas.Top="120"
-                Canvas.Left="320">
-
-            </Border>
+                Canvas.Left="320" />
         </Canvas>
 
     </Grid>

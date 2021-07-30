@@ -11,38 +11,37 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resource/Converter.xaml"/>
-                <ResourceDictionary Source="/Resource/Styles/MainWindow/MainWindow_Styles.xaml"/>
+                <ResourceDictionary Source="/Resource/Converter.xaml" />
+                <ResourceDictionary Source="/Resource/Styles/MainWindow/MainWindow_Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <Window.DataContext>
-        <vm:MainWindowViewModel x:Name="ViewModel" 
-                                xmlns:vm="clr-namespace:PuddingWolfLoader.Framework.ViewModel"/>
+        <vm:MainWindowViewModel x:Name="ViewModel"
+                                xmlns:vm="clr-namespace:PuddingWolfLoader.Framework.ViewModel" />
     </Window.DataContext>
-    <Grid >
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="800"/>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="800" />
         </Grid.ColumnDefinitions>
         <StackPanel>
             <StackPanel Height="100">
-                <Label Height="100" Content="你知道吗：这里是留着放Logo的" VerticalContentAlignment="Center" HorizontalAlignment="Center"/>
+                <Label Height="100" Content="你知道吗：这里是留着放Logo的" VerticalContentAlignment="Center"
+                       HorizontalAlignment="Center" />
             </StackPanel>
-            <ListBox x:Name="SelectList" 
+            <ListBox x:Name="SelectList"
                      Style="{StaticResource TabListBox}"
                      SelectedIndex="0"
-                     ItemsSource="{Binding ViewTabs}">
-
-            </ListBox>
+                     ItemsSource="{Binding ViewTabs}" />
         </StackPanel>
         <Grid Grid.Column="1">
-            <ContentControl 
+            <ContentControl
                 Width="800"
                 Height="600"
                 Padding="0" Margin="0"
-                            x:Name="cc"
-                Content="{Binding ElementName=SelectList,Path=SelectedItem,Converter={StaticResource ContentViewConverter}}"/>
+                x:Name="cc"
+                Content="{Binding ElementName=SelectList,Path=SelectedItem,Converter={StaticResource ContentViewConverter}}" />
         </Grid>
     </Grid>
 </Window>

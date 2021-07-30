@@ -2,17 +2,16 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Resource/Colors.xaml"/>
+        <ResourceDictionary Source="/Resource/Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
+
     <Storyboard x:Key="BorderBounceAni">
         <DoubleAnimation
-                                Duration="0:0:0.3"
-                               From="10"
-                                By="35"
-                                To="20"
-                                Storyboard.TargetProperty="Height"
-                                >
+            Duration="0:0:0.3"
+            From="10"
+            By="35"
+            To="20"
+            Storyboard.TargetProperty="Height">
             <DoubleAnimation.EasingFunction>
                 <BackEase EasingMode="EaseOut" />
             </DoubleAnimation.EasingFunction>
@@ -20,11 +19,10 @@
     </Storyboard>
     <Storyboard x:Key="OpacityAni">
         <DoubleAnimation
-                                Duration="0:0:0.3"
-                               From="0.7"
-                                To="1"
-                                Storyboard.TargetProperty="Opacity"
-                                >
+            Duration="0:0:0.3"
+            From="0.7"
+            To="1"
+            Storyboard.TargetProperty="Opacity">
             <DoubleAnimation.EasingFunction>
                 <BackEase EasingMode="EaseIn" />
             </DoubleAnimation.EasingFunction>
@@ -32,100 +30,106 @@
     </Storyboard>
     <Storyboard x:Key="OpacityAniExit">
         <DoubleAnimation
-                                Duration="0:0:0.3"
-                               From="1"
-                                To="0.7"
-                                Storyboard.TargetProperty="Opacity"
-                                >
+            Duration="0:0:0.3"
+            From="1"
+            To="0.7"
+            Storyboard.TargetProperty="Opacity">
             <DoubleAnimation.EasingFunction>
                 <BackEase EasingMode="EaseOut" />
             </DoubleAnimation.EasingFunction>
         </DoubleAnimation>
     </Storyboard>
-    <Style TargetType="Border" x:Key="ItemBorder" >
+    <Style TargetType="Border" x:Key="ItemBorder">
         <Style.Setters>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="160"/>
-            <Setter Property="Margin" Value="20,10"/>
-            <Setter Property="Padding" Value="10,5"/>
-            <Setter Property="CornerRadius" Value="10"/>
-            <Setter Property="Background" Value="{StaticResource ThirdColor}"/>
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="160" />
+            <Setter Property="Margin" Value="20,10" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Background" Value="{StaticResource ThirdColor}" />
 
         </Style.Setters>
         <Style.Resources>
             <Style TargetType="TextBlock">
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="Foreground" Value="{StaticResource SecondColor}"/>
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Foreground" Value="{StaticResource SecondColor}" />
             </Style>
         </Style.Resources>
 
         <Style.Triggers>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" Value="False">
+            <DataTrigger
+                Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
+                Value="False">
                 <Setter Property="Opacity" Value="0.8" />
             </DataTrigger>
 
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" Value="True">
-                <Setter Property="Opacity" Value="1"/>
+            <DataTrigger
+                Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
+                Value="True">
+                <Setter Property="Opacity" Value="1" />
                 <DataTrigger.EnterActions>
-                    <BeginStoryboard Storyboard="{StaticResource OpacityAni}"/>
+                    <BeginStoryboard Storyboard="{StaticResource OpacityAni}" />
                 </DataTrigger.EnterActions>
                 <DataTrigger.ExitActions>
-                    <BeginStoryboard Storyboard="{StaticResource OpacityAniExit}"/>
+                    <BeginStoryboard Storyboard="{StaticResource OpacityAniExit}" />
                 </DataTrigger.ExitActions>
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    
+
     <Style x:Key="BorderSelected" TargetType="Border">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" Value="True">
+            <DataTrigger
+                Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
+                Value="True">
                 <Setter Property="Visibility" Value="Visible" />
                 <DataTrigger.EnterActions>
-                    <BeginStoryboard Storyboard="{StaticResource BorderBounceAni}"/>
+                    <BeginStoryboard Storyboard="{StaticResource BorderBounceAni}" />
                 </DataTrigger.EnterActions>
             </DataTrigger>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" Value="False">
+            <DataTrigger
+                Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}"
+                Value="False">
                 <Setter Property="Visibility" Value="Hidden" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
-    
-    <Style TargetType="ListBox"  x:Key="TabListBox">
+
+    <Style TargetType="ListBox" x:Key="TabListBox">
         <Style.Setters>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
             <Setter Property="ItemTemplate">
                 <Setter.Value>
-                    <DataTemplate >
-                        <Grid  Width="200">
+                    <DataTemplate>
+                        <Grid Width="200">
 
                             <Border Style="{StaticResource ItemBorder}">
                                 <StackPanel Orientation="Horizontal">
                                     <Viewbox Width="30" Height="30"
-                                        HorizontalAlignment="Center">
-                                        <TextBlock 
+                                             HorizontalAlignment="Center">
+                                        <TextBlock
                                             Grid.Column="0"
-                                            Text="{Binding icon}"/>
+                                            Text="{Binding icon}" />
                                     </Viewbox>
 
-                                    <TextBlock 
+                                    <TextBlock
                                         FontSize="14"
                                         Margin="10,0,0,0"
                                         Grid.Column="1"
-                                        Text="{Binding text}"/>
+                                        Text="{Binding text}" />
                                 </StackPanel>
                             </Border>
-                            <Border Height="20" Width="3" 
+                            <Border Height="20" Width="3"
                                     CornerRadius="3"
                                     HorizontalAlignment="Left"
                                     Margin="24,0,0,0"
                                     Background="White"
-                                    Style="{StaticResource BorderSelected}"
-                                    />
+                                    Style="{StaticResource BorderSelected}" />
                         </Grid>
                     </DataTemplate>
                 </Setter.Value>
