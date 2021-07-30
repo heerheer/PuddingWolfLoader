@@ -5,30 +5,51 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PuddingWolfLoader.Framework.View"
              xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
+             xmlns:conv="clr-namespace:PuddingWolfLoader.Framework.Converter"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
+             Width="800" Height="600"
+             >
     <UserControl.DataContext>
         <vm:LogsViewModel x:Name="ViewModel" xmlns:vm="clr-namespace:PuddingWolfLoader.Framework.ViewModel"/>
     </UserControl.DataContext>
     <UserControl.Resources>
-        <ResourceDictionary Source="/Resource/Styles/LogsView/LogsView_Styles.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resource/Styles/LogsView/LogsView_Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <conv:ListWhereConverter x:Key="ListWhereConverter"/>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="500"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <TextBox Margin="10"
-                 pu:TextBoxHelper.CornerRadius="10"
-                 Padding="10"
-                 IsReadOnly="True"
-                 TextWrapping="Wrap"
-                 Text="{Binding LogsText,Mode=OneWay}"/>
+        <DataGrid ItemsSource="{Binding SelectedLogs}"
+                  Margin="10"
+                  IsReadOnly="True"
+                  >
+
+            
+        </DataGrid>
         <Border Grid.Row="1"
                 Margin="10"
                 CornerRadius="10"
-                Background="{StaticResource LightColor}">
-            <TextBlock Text="你知道吗:这边可以放一些按钮" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+               >
+            <StackPanel Orientation="Horizontal">
+                <ComboBox Height="40" Width="100"
+                          x:Name="LogTypeComboBox" 
+                          Text="{Binding SelectedType}"
+                          SelectedValuePath="Content"
+                          SelectedIndex="0"
+                          pu:ComboBoxHelper.CornerRadius="5">
+                    <ComboBoxItem Content="Debug"/>
+                    <ComboBoxItem Content="Info"/>
+                    <ComboBoxItem Content="Warning"/>
+                    <ComboBoxItem Content="Error"/>
+                    <ComboBoxItem Content="Fatal"/>
+                </ComboBox>
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>

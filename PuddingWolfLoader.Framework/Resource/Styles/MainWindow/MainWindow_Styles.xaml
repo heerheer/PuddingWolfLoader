@@ -91,7 +91,7 @@
         </Style.Triggers>
     </Style>
     
-    <Style TargetType="ListBox" >
+    <Style TargetType="ListBox"  x:Key="TabListBox">
         <Style.Setters>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="0"/>
@@ -100,8 +100,8 @@
             <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
             <Setter Property="ItemTemplate">
                 <Setter.Value>
-                    <DataTemplate>
-                        <Grid Width="200">
+                    <DataTemplate >
+                        <Grid  Width="200">
 
                             <Border Style="{StaticResource ItemBorder}">
                                 <StackPanel Orientation="Horizontal">

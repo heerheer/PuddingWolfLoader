@@ -14,7 +14,7 @@ namespace PuddingWolfLoader.Framework.Container
             return GetViewInstance(type);
         }
 
-        private static object GetViewInstance(Type type)
+        public static object GetViewInstance(Type type)
         {
             if (_views.ContainsKey(type))
             {

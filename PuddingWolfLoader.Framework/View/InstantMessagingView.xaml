@@ -4,12 +4,113 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PuddingWolfLoader.Framework.View"
+             xmlns:vm="clr-namespace:PuddingWolfLoader.Framework.ViewModel"
+             xmlns:pu="clr-namespace:Panuon.UI.Silver;assembly=Panuon.UI.Silver"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <UserControl.DataContext>
-        <vm:LogsViewModel x:Name="ViewModel" xmlns:vm="clr-namespace:PuddingWolfLoader.Framework.ViewModel"/>
+        <vm:InstantMessagingViewModel x:Name="ViewModel" />
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Resource/Styles/IMView/iM_Main_Styles.xaml"/>
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="{StaticResource ThirdColor}">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="添加群组" Margin="5,10"
+                       Command="{Binding AddGroupCommand}"/>
+                <Button Content="添加好友" Margin="5,10"
+                        Command="{Binding AddFriendCommand}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="7*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Background="Gray">
+                <ListView
+                    SelectedItem="{Binding SelectedSource}"
+                         SelectionMode="Single"
+                        Margin="0"
+                        ItemsSource="{Binding iMObjects}"
+                         FontFamily="{StaticResource CommonFont}"
+                         ItemTemplateSelector="{StaticResource GroupFriendSelector}"
+                         />
+
+            </Grid>
+            <Grid Background="WhiteSmoke"
+                  Grid.Column="1">
+                <DockPanel>
+                    <Border MinHeight="60" MaxHeight="200" DockPanel.Dock="Bottom">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Margin="5" VerticalContentAlignment="Center"
+                                     Text="{Binding EditingMessage}"
+                                     TextWrapping="Wrap"
+                                     AcceptsReturn="True"/>
+                            <Button Grid.Column="1"
+                                    Margin="5"
+                                    pu:ButtonHelper.CornerRadius="5"
+                                    Background="{StaticResource ThirdColor}"
+                                    Content="Send"
+                                    Foreground="White"
+                                    FontSize="18"
+                                    Command="{Binding SendMsgCommand}"
+                                    Height="40"
+                                    Width="100"
+                                    />
+                        </Grid>
+                    </Border>
+                    <ListBox
+                        ItemTemplateSelector="{StaticResource chatBubbleSelector}" 
+         ItemsSource="{Binding Messages}" 
+         Background="{DynamicResource background_brush}" 
+         BorderThickness="0,1,0,1" 
+         BorderBrush="#D3D3D3"
+         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Style.Setters>
+
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                <Border Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}"
+                                SnapsToDevicePixels="true">
+                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                </Style.Setters>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        
+                    </ListBox>
+                </DockPanel>
+            </Grid>
+        </Grid>
+
     </Grid>
 </UserControl>

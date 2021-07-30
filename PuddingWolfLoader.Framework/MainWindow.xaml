@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PuddingWolfLoader.Framework"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
-        Title="PuddingWolfLoader.Framework" Height="640" Width="1000"
+        Title="PuddingWolfLoader.Framework" Height="640" Width="1020"
         FontFamily="{StaticResource CommonFont}">
     <Window.Resources>
         <ResourceDictionary>
@@ -20,7 +20,7 @@
         <vm:MainWindowViewModel x:Name="ViewModel" 
                                 xmlns:vm="clr-namespace:PuddingWolfLoader.Framework.ViewModel"/>
     </Window.DataContext>
-    <Grid>
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="800"/>
@@ -30,6 +30,7 @@
                 <Label Height="100" Content="你知道吗：这里是留着放Logo的" VerticalContentAlignment="Center" HorizontalAlignment="Center"/>
             </StackPanel>
             <ListBox x:Name="SelectList" 
+                     Style="{StaticResource TabListBox}"
                      SelectedIndex="0"
                      ItemsSource="{Binding ViewTabs}">
 
@@ -37,8 +38,11 @@
         </StackPanel>
         <Grid Grid.Column="1">
             <ContentControl 
-                Content="{Binding ElementName=SelectList,Path=SelectedIndex,Converter={StaticResource ContentViewConverter}}"/>
-            
+                Width="800"
+                Height="600"
+                Padding="0" Margin="0"
+                            x:Name="cc"
+                Content="{Binding ElementName=SelectList,Path=SelectedItem,Converter={StaticResource ContentViewConverter}}"/>
         </Grid>
     </Grid>
 </Window>
