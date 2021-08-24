@@ -25,34 +25,35 @@ namespace PuddingWolfLoader.SDK
         /// 一条Info日志
         /// </summary>
         /// <param name="text"></param>
-        public void Push(string text)
+        public void Push(params object[] objs)
         {
-            Info(text);
-        }
-        public void Info(string text)
-        {
-            Push(new PudLog(PudLogType.Info, FromType.Name, DateTime.Now, text));
+            Info(string.Join("", objs));
         }
 
-        public void Debug(string text)
+        public void Info(params object[] objs)
         {
-            Push(new PudLog(PudLogType.Debug, FromType.Name, DateTime.Now, text));
+            Push(new PudLog(PudLogType.Info, FromType.Name, DateTime.Now, string.Join("", objs)));
+        }
+
+        public void Debug(params object[] objs)
+        {
+            Push(new PudLog(PudLogType.Debug, FromType.Name, DateTime.Now, string.Join("", objs)));
 
         }
 
-        public void Error(string text)
+        public void Error(params object[] objs)
         {
-            Push(new PudLog(PudLogType.Error, FromType.Name, DateTime.Now, text));
+            Push(new PudLog(PudLogType.Error, FromType.Name, DateTime.Now, string.Join("", objs)));
         }
 
-        public void Warning(string text)
+        public void Warning(params object[] objs)
         {
-            Push(new PudLog(PudLogType.Warning, FromType.Name, DateTime.Now, text));
+            Push(new PudLog(PudLogType.Warning, FromType.Name, DateTime.Now, string.Join("", objs)));
         }
 
-        public void Fatal(string text)
+        public void Fatal(params object[] objs)
         {
-            Push(new PudLog(PudLogType.Fatal, FromType.Name, DateTime.Now, text));
+            Push(new PudLog(PudLogType.Fatal, FromType.Name, DateTime.Now, string.Join("", objs)));
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using Panuon.UI.Core;
 using PuddingWolfLoader.Framework.Container;
 using PuddingWolfLoader.Framework.Model;
+using PuddingWolfLoader.Framework.Util;
 using PuddingWolfLoader.SDK;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Threading;
 
 namespace PuddingWolfLoader.Framework.ViewModel
 {
@@ -24,12 +26,14 @@ namespace PuddingWolfLoader.Framework.ViewModel
     [PropertyChanged.AddINotifyPropertyChangedInterface]
     public class InstantMessagingViewModel
     {
+        public static InstantMessagingViewModel Instance;
+
         private LogContainer logContainer;
 
         public ObservableCollection<IMObject> iMObjects { get; set; }
         public Dictionary<string, ObservableCollection<IMMsg>> MessageDic { get; set; } = new();
 
-        public ObservableCollection<IMMsg> Messages => SelectedSource==null?new():MessageDic[SelectedSource?.Id];
+        public ObservableCollection<IMMsg> Messages => SelectedSource == null ? new() : MessageDic[SelectedSource?.Id];
         public string EditingMessage { get; set; }
         public IMObject SelectedSource { get; set; }
 
@@ -45,7 +49,7 @@ namespace PuddingWolfLoader.Framework.ViewModel
         public delegate void MsgReceivedEventHandler(IMMsg msg);
         public static event MsgReceivedEventHandler OnMsgReceived;
 
-        public delegate void GroupJoinedMemberEventHandler(string group,string member);
+        public delegate void GroupJoinedMemberEventHandler(string group, string member);
         public static event GroupJoinedMemberEventHandler OnGroupJoinedMemberEvent;
         #endregion
 
@@ -57,7 +61,7 @@ namespace PuddingWolfLoader.Framework.ViewModel
 
         public InstantMessagingViewModel()
         {
-
+            Instance = this;
             //初始化日志容器
             logContainer = LogContainer.CreateInstance<InstantMessagingViewModel>();
             LogCore.RegLogContainer(logContainer);
@@ -82,9 +86,13 @@ namespace PuddingWolfLoader.Framework.ViewModel
              };
             OnMsgReceived += delegate (IMMsg msg)
             {
-                logContainer.Info($"IM收到消息来自{msg.From}发送者{msg.Sender},消息内容{msg.Content}");
+                logContainer.Info($"IM收到消息来自{msg.From}发送者{msg.Sender},消息内容{System.Text.RegularExpressions.Regex.Escape(msg.Content)}");
             };
-            OnGroupJoinedMemberEvent += delegate (string group,string id)
+            OnMsgReceived += delegate (IMMsg msg)
+            {
+                PluginLoader.GroupMsgEvent(long.Parse(msg.From), long.Parse(msg.Sender), msg.Content);
+            };
+            OnGroupJoinedMemberEvent += delegate (string group, string id)
             {
                 logContainer.Info($"IM 成员{id}加入了群{group}");
             };
@@ -108,13 +116,15 @@ namespace PuddingWolfLoader.Framework.ViewModel
                 Name = randomName[new Random().Next(randomName.Length)] + new Random().Next(0, 999).ToString()
             });
         }
+
         void SendMsg(object sender)
         {
-            CreatedMsg(SelectedSource.Id, "10000", EditingMessage);
+            CreatedMsg(SelectedSource.Id, "1767407822", EditingMessage);
         }
+
         void Group_AddRandomMemeber(object sender)
         {
-            AddGroupMember(SelectedSource.Id,new Random().Next(10001,99999).ToString());
+            AddGroupMember(SelectedSource.Id, new Random().Next(10001, 99999).ToString());
         }
 
 
@@ -136,13 +146,16 @@ namespace PuddingWolfLoader.Framework.ViewModel
         /// </summary>
         public void CreatedMsg(string from, string sender, string msg)
         {
-            var _msg = new IMMsg(MsgType.TextMessage) { From = from, Sender = sender, Content = System.Text.RegularExpressions.Regex.Escape(msg) };
-            MessageDic[from].Add(_msg);
+            var _msg = new IMMsg(MsgType.TextMessage) { From = from, Sender = sender, Content = msg };
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                MessageDic[from].Add(_msg);
+            });
             OnMsgReceived.Invoke(_msg);
         }
 
-        public void AddGroupMember(string group,string id)
-{
+        public void AddGroupMember(string group, string id)
+        {
             var _msg = new IMMsg(MsgType.Event) { From = group, Sender = id, Content = $"{id}加入了群聊" };
             MessageDic[group].Add(_msg);
             (iMObjects.First(x => x.Id == group) as Group).Members.Add(id);

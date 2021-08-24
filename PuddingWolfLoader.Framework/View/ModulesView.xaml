@@ -4,11 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:PuddingWolfLoader.Framework.View"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <vm:ModulesViewModel
             xmlns:vm="clr-namespace:PuddingWolfLoader.Framework.ViewModel" />
     </UserControl.DataContext>
-    <Grid />
+    <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding Plugins}" Margin="10" DisplayMemberPath="PluginName">
+
+            </ListBox>
+            <Button Grid.Column="1" Height="40" Width="100" Content="重载Plugins" Margin="10,10,370,400">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:CallMethodAction TargetObject="{Binding}" MethodName="LoadPlugins"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
 </UserControl>
